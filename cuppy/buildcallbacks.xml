@@ -16,7 +16,8 @@
 <project name="cuppy_buildcallbacks" >
 	<property file="platformhome.properties" />
 	<property name="platformhome" location=".."/>
-	
+	<property name="ext.cuppy.path" location="."/>
+
 	<property name="cuppy.base.extension.name" value="cuppy"/>
 
 	<!-- 
