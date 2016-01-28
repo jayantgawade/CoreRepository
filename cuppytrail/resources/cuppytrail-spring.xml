@@ -13,14 +13,11 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-		http://www.springframework.org/schema/beans/spring-beans.xsd
-	    http://www.springframework.org/schema/context
-		http://www.springframework.org/schema/context/spring-context-3.1.xsd
-		http://www.springframework.org/schema/aop
-		http://www.springframework.org/schema/aop/spring-aop.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
 	<context:component-scan base-package="de.hybris.platform.cuppytrail"/>
 	<!-- The hybris platform provides one single Spring application context for beans
@@ -77,6 +74,18 @@
 	<bean id="defaultStadiumFacade" class="de.hybris.platform.cuppytrail.facades.impl.DefaultStadiumFacade">
 		<property name="stadiumService" ref="stadiumService"/>
 	</bean>
+	<bean id="sendRankingJob" class="de.hybris.platform.cuppytrail.jobs.SendRankingJob"
+		autowire="byName"/>
 	
-	
+	<bean id="stadiumCapacityInterceptor" class="de.hybris.platform.cuppytrail.interceptors.StadiumCapacityInterceptor"
+		/>
+	<bean id="StadiumInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="typeCode" value="Stadium"/>
+		<property name="interceptor" ref="stadiumCapacityInterceptor"/>
+	</bean>
+	<bean id="stadiumListener" class="de.hybris.platform.cuppytrail.events.StadiumEventListener">
+	<property name="clusterService" ref="clusterService"/>
+	<property name="tenantService" ref="tenantService"/>
+		
+		</bean>
 </beans>
