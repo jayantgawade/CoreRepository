@@ -1,0 +1,3 @@
+
+"INSERT_UPDATE WorkflowTemplate";"code[unique=true]";"name[lang=de]";"name[lang=en]";"owner(uid)";"description[lang=de]";"description[lang=en]";"activationscript";"visibleForPrincipals(uid)";;;
+;"NewPlayerRegistration";"Spieler Registrierung";"New Player Registration";"admin";;;;"cuppyadmins";;;
